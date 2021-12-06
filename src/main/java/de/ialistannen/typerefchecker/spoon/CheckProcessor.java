@@ -28,9 +28,15 @@ public class CheckProcessor extends AbstractProcessor<CtTypeReference<?>> {
 		if (!allowList.isAllowed(typeRef.getQualifiedName())) {
 			CtNamedElement namedParent = typeRef.getParent(CtNamedElement.class);
 			CtType<?> typeParent = typeRef.getParent(CtType.class);
+
+			String parentName = typeParent != null ? typeParent.getQualifiedName() : "<unknown>";
+			String namedParentName = namedParent != null
+				? namedParent.getReference().toString()
+				: "<unknown>";
+
 			throw new IllegalArgumentException(
 				"Found '" + typeRef.getQualifiedName()
-					+ "' in " + typeParent.getQualifiedName() + "#" + namedParent.getReference().toString()
+					+ "' in " + parentName + "#" + namedParentName
 					+ " at " + typeRef.getParent().getPosition()
 			);
 		}
