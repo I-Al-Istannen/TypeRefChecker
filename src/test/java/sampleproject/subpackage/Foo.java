@@ -6,7 +6,7 @@ public class Foo {
 
 	public boolean isUserAGoat() {
 		new Nested().foo();
-		System.out.println(ohNo);
+		System.out.println(this.ohNo);
 		return false;
 	}
 
